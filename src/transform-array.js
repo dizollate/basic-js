@@ -1,6 +1,15 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function transform(arr){
+  if (arr.length > 50) return []
+	let emptyArr = []
+	for (let i = 0; i<arr.length; i++){
+		let emptyArr = arr.filter(person => person === '--discard-prev' || person === '--double-next' || person === '--discard-next' || person === '--double-prev')
+		if (emptyArr.length === 0){
+			return arr
+		}
+	}
+	if (arr.length === 0) return [];
   const len = arr.length;
   let empty = [];
   for (let i = 0; i < len; i++) {

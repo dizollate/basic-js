@@ -16,6 +16,7 @@ const chainMaker = {
      position > this.currentInput.length 
     || !Number.isInteger(position)
     ) {
+    	this.currentInput = [];
       throw new Error()
     }
     this.currentInput =
