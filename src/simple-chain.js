@@ -7,7 +7,7 @@ const chainMaker = {
     
   },
   addLink(value) {
-    (value === undefined)? this.currentInput.push('(  )'): this.currentInput.push(( ${value} ))      
+    (value === undefined)? this.currentInput.push('(  )'): this.currentInput.push(( `${value}` ))      
     return this
   },
   removeLink(position) {
@@ -19,7 +19,7 @@ const chainMaker = {
       throw new Error()
     }
     this.currentInput =
-     this.currentInput.slice(0, position -1).concat(this.currentInput.slice(position));
+     this.currentInput.slice(0, position-1).concat(this.currentInput.slice(position));
     return this
     
   },
