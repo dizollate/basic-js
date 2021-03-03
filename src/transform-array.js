@@ -1,24 +1,31 @@
 const CustomError = require("../extensions/custom-error");
 
-module.exports = function transform(arr) {
-  for(let i =0; i < arr.length; i++){
-  	if (arr[i] === '--discard-next' ){
-				arr.splice(i, 2);
-        
-      }
-    if (arr[i] === '--discard-prev'){
-    	  arr.splice(i-1, 2);
-        i--
+module.exports = function transform(arr){
+  const len = arr.length;
+  let empty = [];
+  for (let i = 0; i < len; i++) {
+    empty.push(arr[i]);
+    if (empty[i] === '--double-next') {
+      empty.push(arr[i+1]);
+      empty.splice(i, 1)
     }
-    if (arr[i] === "--double-prev"){
-     	arr.splice(i, 1, arr[i-1]);
+    if (empty[i] === '--double-prev') {
+      empty.push(empty[i-1]);
+      empty.splice(i, 1);
+    }
+    if (empty[i] === '--discard-next') {
+      if (arr[i+2] === '--discard-prev') {
+         arr.splice(i+2, 1);
+      }
+      empty.splice(i, 1);
+      i++
       
     }
-    if (arr[i] === "--double-next"){
-      arr.splice(i, 1, arr[i+1]);
-     
+    if (empty[i] === '--discard-prev') {
+      empty.splice(i-1, 2)
     }
-    
   }
-  return arr
+    
+
+  return empty = empty.filter(num => typeof num === 'number')
 };
