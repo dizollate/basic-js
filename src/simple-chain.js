@@ -11,8 +11,8 @@ const chainMaker = {
     return this
   },
   removeLink(position) {
-    if( typeof position != "number" 
-     position < 0 
+    if( typeof position != "number" ||
+     position < 0 ||
      position > this.currentInput.length 
     || !Number.isInteger(position)
     ) {
