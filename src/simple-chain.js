@@ -7,12 +7,12 @@ const chainMaker = {
     
   },
   addLink(value) {
-    (value === undefined)? this.currentInput.push('(  )'): this.currentInput.push(( `${value}` ))      
+    (value === undefined)? this.currentInput.push('(  )'): this.currentInput.push(`( ${value} )`)      
     return this
   },
   removeLink(position) {
     if( typeof position != "number" ||
-     position < 0 ||
+     position < 1 ||
      position > this.currentInput.length 
     || !Number.isInteger(position)
     ) {
