@@ -1,6 +1,9 @@
 const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
+     constructor(isDirect = true) {
+    this.isDirect = isDirect;
+  }
   encrypt(str, word) {
     var alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";	
     alph = alph.split("");
@@ -39,13 +42,16 @@ class VigenereCipheringMachine {
         if (alph[finn[i]] === undefined){
          	slp.push(encStr[i])
           
-        } else if (typeof finn[i] === 'string' && finn[i]*1>0){
+        } else if (typeof finn[i] === 'string' && finn[i]*1>0 || typeof finn[i] === 'string' && finn[i]*1===0 ){
         	slp.push(encStr[i])
         }
         else {
         	slp.push(alph[finn[i]])
         }
     		
+    }
+     if (!this.isDirect) {
+      return slp.reverse().join("");
     }
     return slp.join("")
   }   
@@ -86,13 +92,16 @@ class VigenereCipheringMachine {
         if (alph[finn[i]] === undefined){
          	slp.push(encStr[i])
           
-        } else if (typeof finn[i] === 'string' && finn[i]*1>0){
+        } else if (typeof finn[i] === 'string' && finn[i]*1>0 || typeof finn[i] === 'string' && finn[i]*1===0 ){
         	slp.push(encStr[i])
         }
         else {
         	slp.push(alph[finn[i]])
         }
     		
+    }
+     if (!this.isDirect) {
+      return slp.reverse().join("");
     }
     return slp.join("")
   }   
